@@ -36,8 +36,6 @@ https://abheeyeee-os-cpu-scheduler-simulator.streamlit.app
 ## 📂 Folder Structure
 scheduler-simulator/
 
-│
-├── app.py # Main Streamlit app
 ├── requirements.txt # Dependencies
 ├── process.py # Process class
 ├── input/sample_input.json # Sample input file (optional)
