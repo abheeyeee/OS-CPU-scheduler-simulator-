@@ -29,7 +29,7 @@ It visualizes common CPU scheduling algorithms with animated Gantt charts and pe
 ## 🖥️ Live Demo
 
 👉 Try the live version here:  
-https://abheeyeee-os-cpu-scheduler-simulator.streamlit.app/
+https://abheeyeee-os-cpu-scheduler-simulator.streamlit.app
 
 ---
 
