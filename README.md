@@ -1,4 +1,4 @@
-# 🔧 CPU Scheduling Simulator
+# 🔧 CPU Scheduling Simulator https://abheeyeee-os-cpu-scheduler-simulator.streamlit.app
 
 An interactive CPU scheduling algorithm simulator built using **Streamlit**.  
 It visualizes common CPU scheduling algorithms with animated Gantt charts and performance metrics.
