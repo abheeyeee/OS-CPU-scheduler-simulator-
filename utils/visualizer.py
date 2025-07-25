@@ -3,7 +3,7 @@ import time
 import streamlit as st
 
 def plot_gantt_chart(schedule_result):
-    # Static Gantt chart
+    
     gantt = schedule_result["gantt"]
     fig, ax = plt.subplots()
 
@@ -23,7 +23,7 @@ def plot_gantt_chart(schedule_result):
 
 
 def animate_gantt_chart(schedule_result, delay=0.5):
-    # Animated Gantt chart
+     
     gantt = schedule_result["gantt"]
     fig, ax = plt.subplots()
     

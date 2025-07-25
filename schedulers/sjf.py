@@ -14,7 +14,7 @@ def sjf_schedule(processes: List[Process]):
                 ready_queue.append(p)
 
         if ready_queue:
-            # Select process with shortest burst time
+             
             ready_queue.sort(key=lambda p: p.burst_time)
             current = ready_queue.pop(0)
 
@@ -28,7 +28,7 @@ def sjf_schedule(processes: List[Process]):
             time = current.completion_time
             completed.append(current)
         else:
-            time += 1  # CPU idle
+            time += 1   
 
     return {
         "gantt": gantt,

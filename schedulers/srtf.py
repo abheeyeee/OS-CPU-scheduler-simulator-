@@ -33,7 +33,7 @@ def srtf_schedule(processes: List[Process]):
 
             last_pid = current.pid
         else:
-            last_pid = None  # CPU is idle
+            last_pid = None  
             gantt.append(("Idle", time, time + 1))
 
         time += 1

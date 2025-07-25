@@ -5,7 +5,7 @@ class Process:
         self.burst_time = burst_time
         self.priority = priority
 
-        # Runtime calculated
+         
         self.remaining_time = burst_time
         self.start_time = None
         self.completion_time = None
