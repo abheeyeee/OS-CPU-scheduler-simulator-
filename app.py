@@ -10,19 +10,19 @@ from schedulers.srtf import srtf_schedule
 from utils.visualizer import plot_gantt_chart, animate_gantt_chart
 import matplotlib.pyplot as plt
 
-# 🧠 Initialize session state
+
 if "simulated" not in st.session_state:
     st.session_state.simulated = False
     st.session_state.result = None
 if "reset_input" not in st.session_state:
     st.session_state.reset_input = True
 
-# Streamlit config
+ 
 st.set_page_config(page_title="CPU Scheduler Simulator", layout="centered")
 st.title("🔧 CPU Scheduling Simulator")
 st.markdown("Built with ❤ using Streamlit")
 
-# 🔁 Reset buttons
+
 col1, col2 = st.columns(2)
 with col1:
     if st.button("🔄 Reset to Default JSON"):
@@ -32,7 +32,7 @@ with col2:
         st.session_state.simulated = False
         st.session_state.result = None
 
-# 📥 Process Input
+ 
 default_processes = [
     { "pid": 1, "arrival_time": 0, "burst_time": 8, "priority": 3 },
     { "pid": 2, "arrival_time": 1, "burst_time": 4, "priority": 1 },
@@ -59,12 +59,12 @@ else:
         st.error(f"❌ Invalid pasted JSON: {e}")
         st.stop()
 
-# Scheduler selection
+ 
 scheduler = st.selectbox("📋 Select Scheduler", [
     "FIFO", "Round Robin", "MLFQ", "Priority Scheduling", "SJF", "SRTF"
 ])
 
-# Extra inputs
+
 time_quantum = None
 mlfq_tq1 = None
 mlfq_tq2 = None
@@ -74,7 +74,7 @@ elif scheduler == "MLFQ":
     mlfq_tq1 = st.number_input("Time Quantum Q0", min_value=1, step=1)
     mlfq_tq2 = st.number_input("Time Quantum Q1", min_value=1, step=1)
 
-# ▶ Run Simulation
+ 
 if st.button("▶ Run Simulation"):
     if scheduler == "FIFO":
         result = fifo_schedule(processes)
@@ -92,7 +92,7 @@ if st.button("▶ Run Simulation"):
     st.session_state.result = result
     st.session_state.simulated = True
 
-# 🖼️ Show Results if Simulation Ran
+ 
 if st.session_state.simulated:
     result = st.session_state.result
 
@@ -104,7 +104,7 @@ if st.session_state.simulated:
     delay = st.slider("⏱️ Animation Delay (seconds)", 0.1, 1.0, 0.5, 0.1)
     animate_gantt_chart(result, delay=delay)
 
-    # 📋 Process Summary
+     
     st.subheader("📋 Process Summary")
     st.table([{
         "PID": f"P{p.pid}",
@@ -119,7 +119,7 @@ if st.session_state.simulated:
     avg_tat = sum(p.turnaround_time for p in result["processes"]) / len(result["processes"])
     st.success(f"✅ Avg Waiting Time: {avg_wt:.2f} | Avg Turnaround Time: {avg_tat:.2f}")
 
-    # 💡 CPU Utilization & Throughput
+     
     total_time = result["gantt"][-1][2]
     total_idle = sum(
         result["gantt"][i][1] - result["gantt"][i - 1][2]
@@ -132,7 +132,7 @@ if st.session_state.simulated:
     st.info(f"💡 CPU Utilization: {cpu_util:.2f}%")
     st.info(f"📈 Throughput: {throughput:.2f} processes/unit time")
 
-    # 📊 Algorithm Comparison
+     
     algos_to_compare = st.multiselect(
         "📊 Compare Algorithms (Optional)", 
         ["FIFO", "Round Robin", "MLFQ", "Priority Scheduling", "SJF", "SRTF"]
@@ -167,7 +167,7 @@ if st.session_state.simulated:
 
         st.table(summary)
 
-    # 📥 Download CSV
+     
     import pandas as pd
 
     df = pd.DataFrame([{
