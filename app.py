@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_analytics
 import json
 from process import Process
 from schedulers.fifo import fifo_schedule
@@ -11,7 +10,7 @@ from schedulers.srtf import srtf_schedule
 from utils.visualizer import plot_gantt_chart, animate_gantt_chart
 import matplotlib.pyplot as plt
 
-streamlit_analytics.start_tracking()
+
 
 if "simulated" not in st.session_state:
     st.session_state.simulated = False
@@ -184,4 +183,3 @@ if st.session_state.simulated:
     csv = df.to_csv(index=False).encode("utf-8")
     st.download_button("📥 Download Process Summary as CSV", csv, "process_summary.csv", "text/csv")
 
-streamlit_analytics.stop_tracking()
