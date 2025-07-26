@@ -10,7 +10,7 @@ from schedulers.sjf import sjf_schedule
 from schedulers.srtf import srtf_schedule
 from utils.visualizer import plot_gantt_chart, animate_gantt_chart
 
-# ---------- Streamlit Config ----------
+#   Streamlit Config  
 st.set_page_config(page_title="CPU Scheduler Simulator", layout="wide")
 st.title("⚡ CPU Scheduling Algorithm Visualizer")
 st.markdown("""
@@ -36,7 +36,7 @@ h1 {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- Custom CSS for Better UI ----------
+ 
 st.markdown("""
 <style>
 .stButton > button {
@@ -54,13 +54,13 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- Session State ----------
+ 
 if "simulated" not in st.session_state:
     st.session_state.simulated = False
     st.session_state.result = None
 
 
-# ---------- Custom Process Input ----------
+ 
 st.subheader("📝 Define Your Processes")
 num_processes = st.number_input("Number of Processes", min_value=1, max_value=10, value=5)
 
@@ -77,7 +77,7 @@ for i in range(num_processes):
             pr = st.number_input(f"Priority", min_value=1, max_value=5, value=3, step=1, key=f"pr{i}")
         processes.append(Process(pid=i+1, arrival_time=at, burst_time=bt, priority=pr))
 
-# ---------- Scheduler Selection ----------
+#   Scheduler Selection 
 scheduler = st.selectbox("📋 Select Scheduler", [
     "FIFO", "Round Robin", "MLFQ", "Priority Scheduling", "SJF", "SRTF"
 ])
@@ -91,7 +91,7 @@ elif scheduler == "MLFQ":
     mlfq_tq1 = st.number_input("Time Quantum Q0", min_value=1, step=1)
     mlfq_tq2 = st.number_input("Time Quantum Q1", min_value=1, step=1)
 
-# ---------- Run Simulation ----------
+
 if st.button("▶ Run Simulation"):
     if scheduler == "FIFO":
         result = fifo_schedule(processes)
@@ -109,7 +109,7 @@ if st.button("▶ Run Simulation"):
     st.session_state.result = result
     st.session_state.simulated = True
 
-# ---------- Show Results ----------
+#   Results 
 if st.session_state.simulated:
     result = st.session_state.result
 
@@ -126,7 +126,7 @@ if st.session_state.simulated:
         st.pyplot(fig, use_container_width=True)
 
     with col2:
-    # Keep slider above animated chart
+     
         st.markdown("<h4 style='text-align: center;'>Animated Gantt Chart</h4>", unsafe_allow_html=True)
         fig.set_size_inches(6, 6) 
         animate_gantt_chart(result, delay=delay)
@@ -195,7 +195,7 @@ if st.session_state.simulated:
 
         st.table(summary)
 
-    # ---------- CSV Export ----------
+    
     df = pd.DataFrame([{
         "PID": p.pid,
         "Arrival Time": p.arrival_time,
