@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit_analytics
 import json
 from process import Process
 from schedulers.fifo import fifo_schedule
@@ -10,6 +11,7 @@ from schedulers.srtf import srtf_schedule
 from utils.visualizer import plot_gantt_chart, animate_gantt_chart
 import matplotlib.pyplot as plt
 
+streamlit_analytics.start_tracking()
 
 if "simulated" not in st.session_state:
     st.session_state.simulated = False
@@ -19,16 +21,16 @@ if "reset_input" not in st.session_state:
 
  
 st.set_page_config(page_title="CPU Scheduler Simulator", layout="centered")
-st.title("🔧 CPU Scheduling Simulator")
+st.title("CPU Scheduling Algorithm Visualizer for Better Learning")
 st.markdown("Built with ❤ using Streamlit")
 
 
 col1, col2 = st.columns(2)
 with col1:
-    if st.button("🔄 Reset to Default JSON"):
+    if st.button("Reset to Default JSON"):
         st.session_state.reset_input = True
 with col2:
-    if st.button("🧹 Clear Simulation"):
+    if st.button("Clear Simulation"):
         st.session_state.simulated = False
         st.session_state.result = None
 
@@ -41,14 +43,14 @@ default_processes = [
     { "pid": 5, "arrival_time": 5, "burst_time": 2, "priority": 1 }
 ]
 
-uploaded_file = st.file_uploader("📂 Upload JSON File (optional)", type=["json"])
+uploaded_file = st.file_uploader("Upload JSON File (optional)", type=["json"])
 if uploaded_file:
     try:
         raw_json = uploaded_file.read().decode("utf-8")
         raw_data = json.loads(raw_json)
         processes = [Process(**p) for p in raw_data]
     except Exception as e:
-        st.error(f"❌ Invalid uploaded JSON: {e}")
+        st.error(f"Invalid uploaded JSON: {e}")
         st.stop()
 else:
     process_json = st.text_area("📥 Or Paste Process List (JSON)", json.dumps(default_processes, indent=2), height=200)
@@ -56,7 +58,7 @@ else:
         raw_data = json.loads(process_json)
         processes = [Process(**p) for p in raw_data]
     except Exception as e:
-        st.error(f"❌ Invalid pasted JSON: {e}")
+        st.error(f"Invalid pasted JSON: {e}")
         st.stop()
 
  
@@ -181,3 +183,5 @@ if st.session_state.simulated:
 
     csv = df.to_csv(index=False).encode("utf-8")
     st.download_button("📥 Download Process Summary as CSV", csv, "process_summary.csv", "text/csv")
+
+streamlit_analytics.stop_tracking()
