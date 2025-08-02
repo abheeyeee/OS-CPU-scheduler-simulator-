@@ -11,7 +11,6 @@ from schedulers.sjf import sjf_schedule
 from schedulers.srtf import srtf_schedule
 from utils.visualizer import plot_gantt_chart, animate_gantt_chart
 
-<script defer src="https://cloud.umami.is/script.js" data-website-id="693fea19-52bf-46e3-9203-e2bad61fed8d"></script>
 
 #   Streamlit Config  
 st.set_page_config(page_title="CPU Scheduler Simulator", layout="wide")
