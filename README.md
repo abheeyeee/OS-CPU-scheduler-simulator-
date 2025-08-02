@@ -24,14 +24,8 @@ It visualizes common CPU scheduling algorithms with animated Gantt charts and pe
 - 📥 Upload or Paste Process JSON
 - 📤 Download process summary as CSV
 
----
 
-## 🖥️ Live Demo
 
-👉 Try the live version here:  
-https://abheeyeee-os-cpu-scheduler-simulator.streamlit.app
-
----
 
 ## 📂 Folder Structure
 scheduler-simulator/
